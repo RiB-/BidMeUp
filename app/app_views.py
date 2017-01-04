@@ -1,7 +1,7 @@
 #******************************************************************************
 # Importing packages
 #******************************************************************************
-from app import app
+from app import App
 from flask import render_template, request
 
 #------------------------------------
@@ -29,8 +29,8 @@ with open(files_path + 'LogReg_3Cat.pkl','r') as f:
 # Demo App Routes
 #******************************************************************************
 
-@app.route('/', methods=['GET','POST'])
-@app.route('/index/', methods=['GET','POST'])
+@App.route('/', methods=['GET','POST'])
+@App.route('/index/', methods=['GET','POST'])
 def app_input():
     Category = 'Photography'
     Subcategory = 'Camera Flashes'
@@ -41,7 +41,7 @@ def app_input():
     return render_template("App_input.html", Category = Category, Subcategory = Subcategory, Brand = Brand, Products = Product_List)
 #end
 
-@app.route('/Insert_Offer/', methods=['GET','POST'])
+@App.route('/Insert_Offer/', methods=['GET','POST'])
 def insert_offer():
     import pickle
     Product = str(request.args.get('Product'))
@@ -68,7 +68,7 @@ def insert_offer():
                          Product = Product, Avg_Ret_Price = Avg_Ret_Price, Min_Sale_Price = Min_Sale_Price)
 #end
 
-@app.route('/Output/', methods=['GET','POST'])
+@App.route('/Output/', methods=['GET','POST'])
 def app_output():
 
     with open(files_path + 'List.p', 'rb') as f:
@@ -97,29 +97,29 @@ def app_output():
     Table_List[6] = '%.2f' %Table_List[6]
 
     return render_template("App_output.html", Category = Table_List[2], Subcategory = Table_List[3], 
-                         Brand = Table_List[4], Product = Table_List[1], Avg_Ret_Price = Table_List[5],
-                         Min_Sale_Price = Table_List[6], P_Acc = P_Acc, P_CO = P_CO, P_Exp = P_Exp, Acc_bar = Acc_bar,
-                         CO_bar = CO_bar, Exp_bar = Exp_bar, Offer = Offer)
+                           Brand = Table_List[4], Product = Table_List[1], Avg_Ret_Price = Table_List[5],
+                           Min_Sale_Price = Table_List[6], P_Acc = P_Acc, P_CO = P_CO, P_Exp = P_Exp, Acc_bar = Acc_bar,
+                           CO_bar = CO_bar, Exp_bar = Exp_bar, Offer = Offer)
 #end
 
 #******************************************************************************
 # Additional Routes
 #******************************************************************************
 
-@app.route('/MVP2_input_01', methods=['GET','POST'])
+@App.route('/MVP2_input_01', methods=['GET','POST'])
 def MVP_input01():
     Category_List = bmu_model.GetCatList()
     return render_template("MVP2_input_01.html", Categories = Category_List)
 #end
 
-@app.route('/MVP2_input_02', methods=['GET','POST'])
+@App.route('/MVP2_input_02', methods=['GET','POST'])
 def MVP_input02():
     Category = str(request.args.get('Category'))
     Subcategory_List = bmu_model.GetSubcatList(Category)
     return render_template("MVP2_input_02.html", Category = Category, Subcategories = Subcategory_List)
 #end
 
-@app.route('/MVP2_input_03', methods=['GET','POST'])
+@App.route('/MVP2_input_03', methods=['GET','POST'])
 def MVP_input03():
     Subcategory = str(request.args.get('Subcategory'))
     Category, Brand_List = bmu_model.GetBrandList(Subcategory)
@@ -127,7 +127,7 @@ def MVP_input03():
                            Brands = Brand_List)
 #end
 
-@app.route('/MVP2_input_04', methods=['GET','POST'])
+@App.route('/MVP2_input_04', methods=['GET','POST'])
 def MVP_input04():
     Brand = str(request.args.get('Brand'))
     Category, Subcategory, Product_List = bmu_model.GetProdList(Brand)
@@ -135,7 +135,7 @@ def MVP_input04():
                            Brand = Brand, Products = Product_List)
 #end
 
-@app.route('/MVP2_input_05', methods=['GET','POST'])
+@App.route('/MVP2_input_05', methods=['GET','POST'])
 def MVP_input05():
     Product = str(request.args.get('Product'))
     Category, Subcategory, Brand, Prod_ID = bmu_model.GetProdID(Product)
@@ -151,7 +151,7 @@ def MVP_input05():
                            Min_Sale_Price = Min_Sale_Price)
 #end
 
-@app.route('/MVP2_output', methods=['GET','POST'])
+@App.route('/MVP2_output', methods=['GET','POST'])
 def MVP2_out():
 
     with open(files_path + 'List.p', 'rb') as f:
@@ -178,11 +178,11 @@ def MVP2_out():
 
     Table_List[5] = '%.2f' %Table_List[5]
     Table_List[6] = '%.2f' %Table_List[6]
-    
+
     return render_template("App_output.html", Category = Table_List[2], Subcategory = Table_List[3], 
-                         Brand = Table_List[4], Product = Table_List[1], Avg_Ret_Price = Table_List[5],
-                         Min_Sale_Price = Table_List[6], P_Acc = P_Acc, P_CO = P_CO, P_Exp = P_Exp, Acc_bar = Acc_bar,
-                         CO_bar = CO_bar, Exp_bar = Exp_bar, Offer = Offer)
+                           Brand = Table_List[4], Product = Table_List[1], Avg_Ret_Price = Table_List[5],
+                           Min_Sale_Price = Table_List[6], P_Acc = P_Acc, P_CO = P_CO, P_Exp = P_Exp, Acc_bar = Acc_bar,
+                           CO_bar = CO_bar, Exp_bar = Exp_bar, Offer = Offer)
 #end
 
 #******************************************************************************
@@ -190,5 +190,5 @@ def MVP2_out():
 #******************************************************************************
 
 if __name__=="__main__":
-    app.run(host='0.0.0.0',port=5000)
+    App.run(host='0.0.0.0',port=5000)
 #end
