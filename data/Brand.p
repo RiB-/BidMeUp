@@ -1,0 +1,3 @@
+S'Frigidaire'
+p0
+.
