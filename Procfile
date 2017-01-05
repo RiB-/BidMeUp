@@ -1,3 +1,1 @@
-#!/bin/bash
-
-sudo supervisord -c ./app_config.conf
+web: gunicorn app:BidMeApp
