@@ -1,7 +1,7 @@
 #******************************************************************************
 # Importing packages
 #******************************************************************************
-from app import App
+from app import BidMeApp
 from flask import render_template, request
 
 #------------------------------------
@@ -29,8 +29,10 @@ with open(files_path + 'LogReg_3Cat.pkl','r') as f:
 # Demo App Routes
 #******************************************************************************
 
-@App.route('/', methods=['GET','POST'])
-@App.route('/index/', methods=['GET','POST'])
+@BidMeApp.route('/', methods=['GET','POST'])
+@BidMeApp.route('/index/', methods=['GET','POST'])
+@BidMeApp.route('/bidmeapp/', methods=['GET','POST'])
+@BidMeApp.route('/demo/', methods=['GET','POST'])
 def app_input():
     Category = 'Photography'
     Subcategory = 'Camera Flashes'
@@ -38,10 +40,10 @@ def app_input():
     Product_List = prod_info_unique_df['Products Name'][prod_info_unique_df['Brand']==Brand]\
                                                        [prod_info_unique_df['Subcategory']==Subcategory]\
                                                        [prod_info_unique_df['Product Category']==Category].unique().tolist()
-    return render_template("App_input.html", Category = Category, Subcategory = Subcategory, Brand = Brand, Products = Product_List)
+    return render_template("./demo_input_product.html", Category = Category, Subcategory = Subcategory, Brand = Brand, Products = Product_List)
 #end
 
-@App.route('/Insert_Offer/', methods=['GET','POST'])
+@BidMeApp.route('/demo_input_offer/', methods=['GET','POST'])
 def insert_offer():
     import pickle
     Product = str(request.args.get('Product'))
@@ -64,11 +66,11 @@ def insert_offer():
     Avg_Ret_Price = '%.2f' %Avg_Ret_Price
     Min_Sale_Price = '%.2f' %Min_Sale_Price
 
-    return render_template("App_offer_input.html", Category = Category, Subcategory = Subcategory, Brand = Brand, 
+    return render_template("./demo_input_offer.html", Category = Category, Subcategory = Subcategory, Brand = Brand, 
                          Product = Product, Avg_Ret_Price = Avg_Ret_Price, Min_Sale_Price = Min_Sale_Price)
 #end
 
-@App.route('/Output/', methods=['GET','POST'])
+@BidMeApp.route('/output/', methods=['GET','POST'])
 def app_output():
 
     with open(files_path + 'List.p', 'rb') as f:
@@ -96,7 +98,7 @@ def app_output():
     Table_List[5] = '%.2f' %Table_List[5]
     Table_List[6] = '%.2f' %Table_List[6]
 
-    return render_template("App_output.html", Category = Table_List[2], Subcategory = Table_List[3], 
+    return render_template("./output.html", Category = Table_List[2], Subcategory = Table_List[3], 
                            Brand = Table_List[4], Product = Table_List[1], Avg_Ret_Price = Table_List[5],
                            Min_Sale_Price = Table_List[6], P_Acc = P_Acc, P_CO = P_CO, P_Exp = P_Exp, Acc_bar = Acc_bar,
                            CO_bar = CO_bar, Exp_bar = Exp_bar, Offer = Offer)
@@ -106,37 +108,39 @@ def app_output():
 # Additional Routes
 #******************************************************************************
 
-@App.route('/MVP2_input_01', methods=['GET','POST'])
-def MVP_input01():
+@BidMeApp.route('/full_input_category/', methods=['GET','POST'])
+@BidMeApp.route('/full_index/', methods=['GET','POST'])
+@BidMeApp.route('/full_bidmeapp/', methods=['GET','POST'])
+def full_input_category():
     Category_List = bmu_model.GetCatList()
-    return render_template("MVP2_input_01.html", Categories = Category_List)
+    return render_template("./full_input_category.html", Categories = Category_List)
 #end
 
-@App.route('/MVP2_input_02', methods=['GET','POST'])
-def MVP_input02():
+@BidMeApp.route('/full_input_subcategory/', methods=['GET','POST'])
+def full_input_subcategory():
     Category = str(request.args.get('Category'))
     Subcategory_List = bmu_model.GetSubcatList(Category)
-    return render_template("MVP2_input_02.html", Category = Category, Subcategories = Subcategory_List)
+    return render_template("./full_input_subcategory.html", Category = Category, Subcategories = Subcategory_List)
 #end
 
-@App.route('/MVP2_input_03', methods=['GET','POST'])
-def MVP_input03():
+@BidMeApp.route('/full_input_brand/', methods=['GET','POST'])
+def full_input_brand():
     Subcategory = str(request.args.get('Subcategory'))
     Category, Brand_List = bmu_model.GetBrandList(Subcategory)
-    return render_template("MVP2_input_03.html", Category = Category, Subcategory = Subcategory, 
+    return render_template("./full_input_brand.html", Category = Category, Subcategory = Subcategory, 
                            Brands = Brand_List)
 #end
 
-@App.route('/MVP2_input_04', methods=['GET','POST'])
-def MVP_input04():
+@BidMeApp.route('/full_input_product/', methods=['GET','POST'])
+def full_input_product():
     Brand = str(request.args.get('Brand'))
     Category, Subcategory, Product_List = bmu_model.GetProdList(Brand)
-    return render_template("MVP2_input_04.html", Category = Category, Subcategory = Subcategory, 
+    return render_template("./full_input_product.html", Category = Category, Subcategory = Subcategory, 
                            Brand = Brand, Products = Product_List)
 #end
 
-@App.route('/MVP2_input_05', methods=['GET','POST'])
-def MVP_input05():
+@BidMeApp.route('/full_input_offer/', methods=['GET','POST'])
+def full_input_offer():
     Product = str(request.args.get('Product'))
     Category, Subcategory, Brand, Prod_ID = bmu_model.GetProdID(Product)
     Avg_Ret_Price, Min_Sale_Price = bmu_model.GetPriceInfo(Prod_ID)
@@ -146,13 +150,13 @@ def MVP_input05():
       pickle.dump(List, f)
     #end
 
-    return render_template("MVP2_input_05.html", Category = Category, Subcategory = Subcategory, 
+    return render_template("./full_input_offer.html", Category = Category, Subcategory = Subcategory, 
                            Brand = Brand, Product = Product, Avg_Ret_Price = Avg_Ret_Price, 
                            Min_Sale_Price = Min_Sale_Price)
 #end
 
-@App.route('/MVP2_output', methods=['GET','POST'])
-def MVP2_out():
+@BidMeApp.route('/full_output/', methods=['GET','POST'])
+def full_output():
 
     with open(files_path + 'List.p', 'rb') as f:
       Table_List = pickle.load(f)
@@ -179,7 +183,7 @@ def MVP2_out():
     Table_List[5] = '%.2f' %Table_List[5]
     Table_List[6] = '%.2f' %Table_List[6]
 
-    return render_template("App_output.html", Category = Table_List[2], Subcategory = Table_List[3], 
+    return render_template("./output.html", Category = Table_List[2], Subcategory = Table_List[3], 
                            Brand = Table_List[4], Product = Table_List[1], Avg_Ret_Price = Table_List[5],
                            Min_Sale_Price = Table_List[6], P_Acc = P_Acc, P_CO = P_CO, P_Exp = P_Exp, Acc_bar = Acc_bar,
                            CO_bar = CO_bar, Exp_bar = Exp_bar, Offer = Offer)
@@ -190,5 +194,5 @@ def MVP2_out():
 #******************************************************************************
 
 if __name__=="__main__":
-    App.run(host='0.0.0.0',port=5000)
+    BidMeApp.run(host='0.0.0.0',port=5000)
 #end

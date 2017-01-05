@@ -17,6 +17,15 @@
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
 
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
 
   <body>
@@ -46,7 +55,7 @@
 <br><br>
       <div class="container">
          <div class="starter-template">
-            <h3>Product Selected</h3>
+            <h3>Select Your Product</h3>
          </div>
          <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
          <!-- change this path if necessary to find css stylesheet -->
@@ -99,29 +108,16 @@
       <br>
 
       <div class="container">
-      <div class="starter-template">
-        <h3>With an offer of ${{Offer}}, you can expect:</h3>
-      </div>
-         <br>
-
-         <h4> Probability of acceptance</h4>
-         <div class="progress" style="width: 50%;">
-            <div class="progress-bar progress-bar-success" style="{{Acc_bar}};">{{P_Acc}}<span class="sr-only"></span></div>
-         </div>
-         <h4> Probability of counter offer</h4>
-         <div class="progress" style="width: 50%;">
-            <div class="progress-bar" style="{{CO_bar}};">{{P_CO}}<span class="sr-only"></span></div>
-         </div>
-         <h4> Probability of offer expiration</h4>
-         <div class="progress" style="width: 50%;">
-            <div class="progress-bar progress-bar-danger" style="{{Exp_bar}};">{{P_Exp}}<span class="sr-only"></span></div>
-         </div>
-         <!-- This is your last container, with the output results displayed -->
-         <div class="container">
-            <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-            <!-- change this path if necessary to find css stylesheet -->
-            <script src="bootstrap.min.js"></script> 
-         </div>
+         <form action="/output" method="get">
+            <div class="form-group"><label for="ID">Offer
+               Amount:</label>
+               <input id="ID" name="ID" placeholder="e.g. " type="float">
+            </div>
+            <div>
+               <button type="submit" class="btn btn-default btn-lg">View
+               your Probability of Success</button>
+            </div>
+         </form>
       </div>
    </body>
 </html>

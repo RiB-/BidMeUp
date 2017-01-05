@@ -1,3 +1,3 @@
 from flask import Flask
-App = Flask(__name__)
+BidMeApp = Flask(__name__)
 from app import app_views

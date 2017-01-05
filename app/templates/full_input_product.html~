@@ -16,7 +16,6 @@
 
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
-
   </head>
 
   <body>
@@ -34,7 +33,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+             <li class="active"><a href="#">Home</a></li>
             <li><a href="http://www.slideshare.net/secret/7hlmYfXqBZFnBd" target="_blank">Slides</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -46,13 +45,11 @@
 <br><br>
       <div class="container">
          <div class="starter-template">
-            <h3>Product Selected</h3>
+            <h2>Select Your Product</h2>
          </div>
-         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-         <!-- change this path if necessary to find css stylesheet -->
-         <script src="bootstrap.min.js"></script> 
       </div>
-
+      <!-- /.container--><!-- This is a table that contains the dropdown menus and the product outputs --><!-- For the dropdown menus, the 'value' is the output attached to each menu item -->
+      <!-- To populate the list dynamically, you need that SQL thing, or something else I don't know about :) -->
       <div class="container">
          <table class="table">
             <tbody>
@@ -85,43 +82,28 @@
                   </td>
 
                   <td align="left">
-                     <select>                       
-                        <option value= "#" > {{Product}} </option>
-                     </select>
+                     <form action="/full_input_offer" method="get">
+                        <select name='Product'>
+                           {% for Product in Products %}                        
+                           <option value= "{{ Product }}" > {{Product}} </option>
+                           {% endfor %}
+                        </select>
+                        <button type="submit">Select</button>
+                     </form>
                   </td>
 
-                  <td> ${{Avg_Ret_Price}} </td>
-                  <td> ${{Min_Sale_Price}} </td>
+                  <td> - </td>
+                  <td> - </td>
                </tr>
             </tbody>
          </table>
       </div>
       <br>
-
-      <div class="container">
-      <div class="starter-template">
-        <h3>With an offer of ${{Offer}}, you can expect:</h3>
-      </div>
-         <br>
-
-         <h4> Probability of acceptance</h4>
-         <div class="progress" style="width: 50%;">
-            <div class="progress-bar progress-bar-success" style="{{Acc_bar}};">{{P_Acc}}<span class="sr-only"></span></div>
-         </div>
-         <h4> Probability of counter offer</h4>
-         <div class="progress" style="width: 50%;">
-            <div class="progress-bar" style="{{CO_bar}};">{{P_CO}}<span class="sr-only"></span></div>
-         </div>
-         <h4> Probability of offer expiration</h4>
-         <div class="progress" style="width: 50%;">
-            <div class="progress-bar progress-bar-danger" style="{{Exp_bar}};">{{P_Exp}}<span class="sr-only"></span></div>
-         </div>
-         <!-- This is your last container, with the output results displayed -->
-         <div class="container">
-            <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-            <!-- change this path if necessary to find css stylesheet -->
-            <script src="bootstrap.min.js"></script> 
-         </div>
+         <!-- /.container --><!-- Bootstrap core JavaScript
+            ================================================== --><!-- Placed at the end of the document so the pages load faster -->
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+         <script src="bootstrap.min.js"></script><!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+         <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
       </div>
    </body>
 </html>
