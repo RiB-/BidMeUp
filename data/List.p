@@ -1,14 +1,14 @@
 (lp0
-S'a06E000000e6RtZIAU'
+S'a06E0000003le7yIAA'
 p1
-aS'26.0 Cu. Ft. Stainless Steel Side-By-Side Refrigerator'
+aS"430EX II Speedlite TTL Shoe-Mount Flash (Guide No. 141'/43 m at 105mm)"
 p2
-aS'Appliances'
+aS'Photography'
 p3
-aS'Side-By-Side Refrigerators'
+aS'Camera Flashes'
 p4
-aS'Frigidaire'
+aS'Canon'
 p5
-aF983.7
-aF983.7
+aF303.39
+aF249.0
 a.
