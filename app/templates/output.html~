@@ -46,7 +46,7 @@
 <br><br>
       <div class="container">
          <div class="starter-template">
-            <h3>Select Your Product</h3>
+            <h3>Product Selected</h3>
          </div>
          <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
          <!-- change this path if necessary to find css stylesheet -->
