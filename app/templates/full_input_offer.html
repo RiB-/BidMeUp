@@ -7,9 +7,10 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="../images/bidmeapp.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../images/bidmeapp.ico" type="image/x-icon">
 
-    <title>BidMeUp</title>
+    <title>BidMeApp</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
@@ -29,11 +30,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/full_home">BidMeUp</a>
+          <a class="navbar-brand" href="/home">BidMeApp</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-             <li class="active"><a href="/full_home">Home</a></li>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/demo_bidmeapp">Demo Version</a></li>
+            <li><a href="/full_login">Full Version</a></li>
             <li><a href="http://www.slideshare.net/secret/7hlmYfXqBZFnBd" target="_blank">Slides</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -45,7 +48,7 @@
 <br><br>
       <div class="container">
          <div class="starter-template">
-            <h3>Select Your Product</h3>
+            <h3>Product Selected</h3>
          </div>
       </div>
       <!-- /.container--><!-- This is a table that contains the dropdown menus and the product outputs --><!-- For the dropdown menus, the 'value' is the output attached to each menu item -->
@@ -96,7 +99,7 @@
       <br>
 
       <div class="container">
-         <form action="/output" method="get">
+         <form action="/full_output" method="get">
             <div class="form-group"><label for="ID">Offer
                Amount:</label>
                <input id="ID" name="ID" placeholder="e.g. " type="float">

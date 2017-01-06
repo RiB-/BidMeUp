@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../images/bidmeapp.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../images/bidmeapp.ico" type="image/x-icon">
+
+    <title>BidMeApp</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="starter-template.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/home">BidMeApp</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/home">Home</a></li>
+            <li><a href="/demo_bidmeapp">Demo Version</a></li>
+            <li><a href="/full_login">Full Version</a></li>
+            <li><a href="http://www.slideshare.net/secret/7hlmYfXqBZFnBd" target="_blank">Slides</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+<br>
+<br>
+<br>
+    <div class="container">
+      <div class="starter-template">
+        <h3>Welcome to BidMeApp!</h3>
+      </div>
+    </div>
+
+    <div class="container">
+      <h5>BidMeApp is a Flask application developed for GreenToe, an online auction-based retailer.</h5>
+      <h5>Customers can browse GreenToe's website, which lists a number of products that are either available directl from GreenToe or from a set of partner retailes, and have the faculty to bid on them. At the moment of bidding, customer are provided with the average retail price - as computed across the partner retailers - as well as the lowest sale price - if available - for the product.</h5>
+      <h5>Once a bid is placed, GreenToe pings the all partner retailers selling the product who, in turn, can accept, ignore, or counter the offer.</h5>
+      <h5>Wheter or not a bid is successful depends on several factors, including (but not limited to) how the offer price compares with retail and sale prices, the product type, the age of the product and its inventory status.</h5>
+      <h5>BidMeApp ingests all the above information and employs machine learning to estimate the probability that a given offer will be successful, countered, or ignored.</h5>
+      <h5>Ready to try?</h5>
+    </div>
+    <div>
+      <div class="container">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td align="center">
+                 <form action="/demo_bidmeapp">
+                    <button type="submit">Try the Demo</button>
+                 </form>
+              </td>
+              <td align="center">
+                 <form action="/full_login">
+                    <button type="submit">Try the Full App</button>
+                 </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <h5>The demo version is free to try, but the full version is password protected. Please contact me if you wish to unlock the full application.</h5>
+    </div>
+   </body>
+</html>
+

@@ -10,6 +10,7 @@ from flask import render_template, request
 from scripts import bmu_model
 import pandas as pd
 import pickle
+import base64
 #******************************************************************************
 
 #******************************************************************************
@@ -26,14 +27,19 @@ with open(files_path + 'LogReg_3Cat.pkl','r') as f:
 #end
 
 #******************************************************************************
-# Demo App Routes
+# App Home
 #******************************************************************************
-
+@BidMeApp.route('/home/', methods=['GET','POST'])
 @BidMeApp.route('/', methods=['GET','POST'])
 @BidMeApp.route('/index/', methods=['GET','POST'])
-@BidMeApp.route('/bidmeapp/', methods=['GET','POST'])
-@BidMeApp.route('/demo/', methods=['GET','POST'])
-@BidMeApp.route('/home/', methods=['GET','POST'])
+def app_home():
+    return render_template("./home.html")
+#end
+
+#******************************************************************************
+# Demo App Routes
+#******************************************************************************
+@BidMeApp.route('/demo_bidmeapp/', methods=['GET','POST'])
 def app_input():
     Category = 'Photography'
     Subcategory = 'Camera Flashes'
@@ -45,7 +51,7 @@ def app_input():
 #end
 
 @BidMeApp.route('/demo_input_offer/', methods=['GET','POST'])
-def insert_offer():
+def demo_input_offer():
     import pickle
     Product = str(request.args.get('Product'))
     Category = 'Photography'
@@ -71,7 +77,7 @@ def insert_offer():
                          Product = Product, Avg_Ret_Price = Avg_Ret_Price, Min_Sale_Price = Min_Sale_Price)
 #end
 
-@BidMeApp.route('/output/', methods=['GET','POST'])
+@BidMeApp.route('/demo_output/', methods=['GET','POST'])
 def app_output():
 
     with open(files_path + 'List.p', 'rb') as f:
@@ -108,11 +114,28 @@ def app_output():
 #******************************************************************************
 # Additional Routes
 #******************************************************************************
+@BidMeApp.route('/full_login/', methods=['GET','POST'])
+def full_login():
+    return render_template("./full_login.html")
+#end
 
-@BidMeApp.route('/full_input_category/', methods=['GET','POST'])
-@BidMeApp.route('/full_index/', methods=['GET','POST'])
+@BidMeApp.route('/full_login_error/', methods=['GET','POST'])
+def full_login_error():
+    return render_template("./full_login_error.html", login_error="Password incorrect: retry or use the demo version.")
+#end
+
+@BidMeApp.route('/full_logged_bidmeapp/', methods=['GET','POST'])
+def full_logged_bidmeapp():
+    passw = str(request.args.get('passw'))
+    check_pssw = (passw==base64.b64decode('QmlkTWVBcHBGdWxsQWNjZXNz'))
+    if check_pssw:
+        Category_List = bmu_model.GetCatList()
+        return render_template("./full_input_category.html", Categories = Category_List)
+    else:
+        return render_template("./full_login_error.html")
+    #end
+
 @BidMeApp.route('/full_bidmeapp/', methods=['GET','POST'])
-@BidMeApp.route('/full_home/', methods=['GET','POST'])
 def full_input_category():
     Category_List = bmu_model.GetCatList()
     return render_template("./full_input_category.html", Categories = Category_List)

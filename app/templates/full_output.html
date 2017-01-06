@@ -7,16 +7,16 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="../images/bidmeapp.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../images/bidmeapp.ico" type="image/x-icon">
 
-    <title>BidMeUp</title>
+    <title>BidMeApp</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
-
   </head>
 
   <body>
@@ -30,11 +30,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/full_home">BidMeUp</a>
+          <a class="navbar-brand" href="/home">BidMeApp</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/full_home">Home</a></li>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/demo_bidmeapp">Demo Version</a></li>
+            <li><a href="/full_login">Full Version</a></li>
             <li><a href="http://www.slideshare.net/secret/7hlmYfXqBZFnBd" target="_blank">Slides</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -112,12 +114,6 @@
          <h4> Probability of offer expiration</h4>
          <div class="progress" style="width: 50%;">
             <div class="progress-bar progress-bar-danger" style="{{Exp_bar}};">{{P_Exp}}<span class="sr-only"></span></div>
-         </div>
-         <!-- This is your last container, with the output results displayed -->
-         <div class="container">
-            <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-            <!-- change this path if necessary to find css stylesheet -->
-            <script src="bootstrap.min.js"></script> 
          </div>
       </div>
    </body>
