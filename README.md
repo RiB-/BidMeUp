@@ -4,6 +4,4 @@ BidMeApp is a Flask-based WebApp developed for a consulting project, whose goal 
 The WebApp is currently hosted and publicly available on Heroku (www.bidmeapp.herokuapp.com). The Demo version of BidMeApp is free-access, while a full version - which unlocks a considerably larger database of products - is currently password protected.
 Please visit www.bidmeapp.herokuapp.com to give it a try.
 
-Note. 
-
 BidMeApp is powered by a machine learning model trained and validated on a set of products provided by the consulting company. The full training dataset and the model are not explicitly provided in this repository (only a pickled version of the model and a subset of products are loaded). 
