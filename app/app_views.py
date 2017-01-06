@@ -33,6 +33,7 @@ with open(files_path + 'LogReg_3Cat.pkl','r') as f:
 @BidMeApp.route('/index/', methods=['GET','POST'])
 @BidMeApp.route('/bidmeapp/', methods=['GET','POST'])
 @BidMeApp.route('/demo/', methods=['GET','POST'])
+@BidMeApp.route('/home/', methods=['GET','POST'])
 def app_input():
     Category = 'Photography'
     Subcategory = 'Camera Flashes'
@@ -98,7 +99,7 @@ def app_output():
     Table_List[5] = '%.2f' %Table_List[5]
     Table_List[6] = '%.2f' %Table_List[6]
 
-    return render_template("./output.html", Category = Table_List[2], Subcategory = Table_List[3], 
+    return render_template("./demo_output.html", Category = Table_List[2], Subcategory = Table_List[3], 
                            Brand = Table_List[4], Product = Table_List[1], Avg_Ret_Price = Table_List[5],
                            Min_Sale_Price = Table_List[6], P_Acc = P_Acc, P_CO = P_CO, P_Exp = P_Exp, Acc_bar = Acc_bar,
                            CO_bar = CO_bar, Exp_bar = Exp_bar, Offer = Offer)
@@ -111,6 +112,7 @@ def app_output():
 @BidMeApp.route('/full_input_category/', methods=['GET','POST'])
 @BidMeApp.route('/full_index/', methods=['GET','POST'])
 @BidMeApp.route('/full_bidmeapp/', methods=['GET','POST'])
+@BidMeApp.route('/full_home/', methods=['GET','POST'])
 def full_input_category():
     Category_List = bmu_model.GetCatList()
     return render_template("./full_input_category.html", Categories = Category_List)
@@ -183,7 +185,7 @@ def full_output():
     Table_List[5] = '%.2f' %Table_List[5]
     Table_List[6] = '%.2f' %Table_List[6]
 
-    return render_template("./output.html", Category = Table_List[2], Subcategory = Table_List[3], 
+    return render_template("./full_output.html", Category = Table_List[2], Subcategory = Table_List[3], 
                            Brand = Table_List[4], Product = Table_List[1], Avg_Ret_Price = Table_List[5],
                            Min_Sale_Price = Table_List[6], P_Acc = P_Acc, P_CO = P_CO, P_Exp = P_Exp, Acc_bar = Acc_bar,
                            CO_bar = CO_bar, Exp_bar = Exp_bar, Offer = Offer)
