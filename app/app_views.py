@@ -73,7 +73,7 @@ def demo_input_offer():
     Avg_Ret_Price = '%.2f' %Avg_Ret_Price
     Min_Sale_Price = '%.2f' %Min_Sale_Price
 
-    return render_template("./demo_input_offer.html", Category = Category, Subcategory = Subcategory, Brand = Brand, 
+    return render_template("./demo_input_offer.html", Category = Category, Subcategory = Subcategory, Brand = Brand,
                          Product = Product, Avg_Ret_Price = Avg_Ret_Price, Min_Sale_Price = Min_Sale_Price)
 #end
 
@@ -84,7 +84,7 @@ def app_output():
       Table_List = pickle.load(f)
     #end
 
-    Prod_ID = Table_List[0]  
+    Prod_ID = Table_List[0]
 
     Gen_Pred_Prod = full_sim_df[full_sim_df.Prod_ID==Prod_ID]
 
@@ -105,7 +105,7 @@ def app_output():
     Table_List[5] = '%.2f' %Table_List[5]
     Table_List[6] = '%.2f' %Table_List[6]
 
-    return render_template("./demo_output.html", Category = Table_List[2], Subcategory = Table_List[3], 
+    return render_template("./demo_output.html", Category = Table_List[2], Subcategory = Table_List[3],
                            Brand = Table_List[4], Product = Table_List[1], Avg_Ret_Price = Table_List[5],
                            Min_Sale_Price = Table_List[6], P_Acc = P_Acc, P_CO = P_CO, P_Exp = P_Exp, Acc_bar = Acc_bar,
                            CO_bar = CO_bar, Exp_bar = Exp_bar, Offer = Offer)
@@ -152,7 +152,7 @@ def full_input_subcategory():
 def full_input_brand():
     Subcategory = str(request.args.get('Subcategory'))
     Category, Brand_List = bmu_model.GetBrandList(Subcategory)
-    return render_template("./full_input_brand.html", Category = Category, Subcategory = Subcategory, 
+    return render_template("./full_input_brand.html", Category = Category, Subcategory = Subcategory,
                            Brands = Brand_List)
 #end
 
@@ -160,7 +160,7 @@ def full_input_brand():
 def full_input_product():
     Brand = str(request.args.get('Brand'))
     Category, Subcategory, Product_List = bmu_model.GetProdList(Brand)
-    return render_template("./full_input_product.html", Category = Category, Subcategory = Subcategory, 
+    return render_template("./full_input_product.html", Category = Category, Subcategory = Subcategory,
                            Brand = Brand, Products = Product_List)
 #end
 
@@ -175,8 +175,8 @@ def full_input_offer():
       pickle.dump(List, f)
     #end
 
-    return render_template("./full_input_offer.html", Category = Category, Subcategory = Subcategory, 
-                           Brand = Brand, Product = Product, Avg_Ret_Price = Avg_Ret_Price, 
+    return render_template("./full_input_offer.html", Category = Category, Subcategory = Subcategory,
+                           Brand = Brand, Product = Product, Avg_Ret_Price = Avg_Ret_Price,
                            Min_Sale_Price = Min_Sale_Price)
 #end
 
@@ -187,7 +187,7 @@ def full_output():
       Table_List = pickle.load(f)
     #end
 
-    Prod_ID = Table_List[0]  
+    Prod_ID = Table_List[0]
 
     Gen_Pred_Prod = full_sim_df[full_sim_df.Prod_ID==Prod_ID]
 
@@ -208,7 +208,7 @@ def full_output():
     Table_List[5] = '%.2f' %Table_List[5]
     Table_List[6] = '%.2f' %Table_List[6]
 
-    return render_template("./full_output.html", Category = Table_List[2], Subcategory = Table_List[3], 
+    return render_template("./full_output.html", Category = Table_List[2], Subcategory = Table_List[3],
                            Brand = Table_List[4], Product = Table_List[1], Avg_Ret_Price = Table_List[5],
                            Min_Sale_Price = Table_List[6], P_Acc = P_Acc, P_CO = P_CO, P_Exp = P_Exp, Acc_bar = Acc_bar,
                            CO_bar = CO_bar, Exp_bar = Exp_bar, Offer = Offer)
