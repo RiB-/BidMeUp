@@ -1,3 +1,3 @@
 #!/usr/bin/env python
-from app import BidMeApp
+from app.app_views import BidMeApp
 BidMeApp.run(debug=True)

@@ -7,7 +7,7 @@ from flask import render_template, request
 #------------------------------------
 # Import user-defined modules
 #------------------------------------
-import bmu_model
+from app import bmu_model
 import pandas as pd
 import pickle
 import base64
@@ -22,8 +22,8 @@ files_path = './data/'
 full_sim_df = pd.read_pickle(files_path + 'Full_CatFeat_SIM_01_DF.pkl')
 prod_info_unique_df = pd.read_csv(files_path + 'Prod_Info_Unique_DF.csv')
 
-with open(files_path + 'LogReg_3Cat.pkl', 'r') as f:
-    predictor_object = pickle.load(f)
+with open(files_path + 'LogReg_3Cat.pkl', 'rb') as f:
+    predictor_object = pickle.load(f, encoding="ISO-8859-1")
 #end
 
 
@@ -236,5 +236,5 @@ def full_output():
 #******************************************************************************
 
 if __name__=="__main__":
-    BidMeApp.run(host='0.0.0.0',port=5000)
+    BidMeApp.run(host='0.0.0.0', port=5000)
 #end
