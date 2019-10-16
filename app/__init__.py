@@ -1,2 +1,1 @@
-from flask import Flask
-BidMeApp = Flask(__name__)
+from app.app_views import BidMeApp
