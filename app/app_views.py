@@ -1,8 +1,7 @@
 #******************************************************************************
 # Importing packages
 #******************************************************************************
-from app import BidMeApp
-from flask import render_template, request
+from flask import Flask, render_template, request
 
 #------------------------------------
 # Import user-defined modules
@@ -16,6 +15,8 @@ import base64
 #******************************************************************************
 # Global Variables and Datasets
 #******************************************************************************
+
+BidMeApp = Flask(__name__)
 
 files_path = './data/'
 
